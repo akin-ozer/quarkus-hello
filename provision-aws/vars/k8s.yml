@@ -1,0 +1,16 @@
+kubernetes_version: '1.17.2'
+kubernetes_version_kubeadm: "{{ kubernetes_version }}"
+kubernetes_pod_network_cidr: '10.244.0.0/16'
+kubernetes_pod_network_cni: 'flannel'
+kubernetes_allow_pods_on_master: true
+kubernetes_packages:
+  - name: kubernetes-cni=0.7.5-00
+    state: present
+  - name: kubelet=1.17.2-00
+    state: present
+  - name: kubectl=1.17.2-00
+    state: present
+  - name: kubeadm=1.17.2-00
+    state: present
+
+kubernetes_enable_web_ui: false

@@ -11,6 +11,8 @@ lsp/
 # OSX
 .DS_Store
 
+# ssh keys
+**id_rsa*
 
 # Maven
 target/
@@ -25,3 +27,9 @@ mvnw.cmd
 # Terraform
 **.terraform/
 **newplan
+
+# Ansible
+**.retry
+
+# Vagrant
+**.vagrant/

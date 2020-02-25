@@ -1,0 +1,7 @@
+swap_file_path: /swapfile
+swap_file_state: absent
+kubernetes_kubelet_extra_args: "--node-ip={{ inventory_hostname }}"
+
+docker_users:
+  - ubuntu
+rancher_cluster_name: "{{ deployment_slug }}"

@@ -1,0 +1,13 @@
+[k8s-boxes]
+34.243.89.194 kubernetes_role=master
+52.211.88.35 kubernetes_role=node
+
+[k8s-masters]
+34.243.89.194 kubernetes_role=master
+
+[k8s-workers]
+52.211.88.35 kubernetes_role=node
+
+[all:vars]
+ansible_user=ubuntu
+ansible_python_interpreter=/usr/bin/python

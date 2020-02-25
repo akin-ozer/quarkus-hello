@@ -1,0 +1,7 @@
+---
+- hosts: k8s-masters
+  gather_facts: yes
+  become: yes
+
+  roles:
+    - k8s.post-setup

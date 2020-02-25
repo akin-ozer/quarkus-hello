@@ -1,0 +1,7 @@
+- name: Install ansible pip dependencies
+  pip:
+    name:
+      - openshift==0.10.0
+      - docker==4.1.0
+      - jmespath==0.9.4
+      - ansible==2.7.8

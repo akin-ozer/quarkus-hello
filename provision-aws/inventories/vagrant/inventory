@@ -1,0 +1,16 @@
+[ansible]
+192.168.44.186
+
+[k8s-boxes]
+192.168.44.187 kubernetes_role=master
+192.168.44.188 kubernetes_role=node
+
+[k8s-masters]
+192.168.44.187 kubernetes_role=master
+
+[k8s-workers]
+192.168.44.188 kubernetes_role=node
+
+[all:vars]
+ansible_user=vagrant
+ansible_python_interpreter=/usr/bin/python

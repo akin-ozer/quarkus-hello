@@ -36,3 +36,16 @@ You can then execute your binary: `./target/quarkus-hello-1.0.0-SNAPSHOT-runner`
 - ingress, egress
 
 - 2 instances
+
+## Configure instances and install Kubernetes
+- Put `id_rsa` and `id_rsa.pub` files in project path(they are gitignored)
+- `cd provision-aws`
+
+<b>To test installation:</b>
+- `vagrant up`
+- `vagrant provision ansible --provision-with vagrant`
+
+<b>To install on AWS:</b>
+- Edit inventories/aws/inventory file to correctly show aws instance ips
+- `vagrant up ansible`
+- `vagrant provision ansible --provision-with aws`

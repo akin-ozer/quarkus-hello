@@ -1,0 +1,12 @@
+---
+- name: Check whether ctop is already there
+  stat:
+    path: /usr/local/bin/ctop
+  register: ctop
+
+- name: Retrieve ctop binary archive
+  get_url:
+    url: "https://github.com/bcicen/ctop/releases/download/v0.7.2/ctop-0.7.2-linux-amd64"
+    dest: /usr/local/bin/ctop
+    mode: 0755
+  when: ctop.stat.islnk is not defined

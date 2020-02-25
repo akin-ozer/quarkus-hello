@@ -1,0 +1,16 @@
+---
+- name: Install helper tools
+  apt:
+    name:
+      - software-properties-common
+      - python3-software-properties
+      - python-apt
+      - python3-pip
+      - acl
+      - virtualenv
+      - curl
+      - jq
+      - htop
+      - tree
+      - vim
+    state: present

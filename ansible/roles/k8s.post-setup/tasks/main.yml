@@ -1,0 +1,54 @@
+---
+- name: Get the username
+  shell: echo ${USER}
+  register: actual_user
+  become: no
+
+- name: Set the username
+  set_fact:
+    the_user: "{{ actual_user.stdout }}"
+
+- name: Set the home path
+  set_fact:
+    the_home: "{{ '/root/' if the_user == 'root' else '/home/' + the_user }}"
+
+- name: Ensure .kube directory exists for the user
+  file:
+    path: "{{ the_home }}/.kube"
+    state: directory
+  when: the_user != 'root'
+
+- name: Copy the kubectl admin.conf to user's home
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: "{{ the_home }}/.kube/config"
+    remote_src: yes
+  when: the_user != 'root'
+
+- name: Set permissions on the .kube directory
+  file:
+    path: "{{ the_home }}/.kube"
+    owner: "{{ the_user }}"
+    mode: 0755
+  when: the_user != 'root'
+
+- name: Set permissions on the kubeconfig
+  file:
+    path: "{{ the_home }}/.kube/config"
+    owner: "{{ the_user }}"
+    mode: 0600
+
+- name: Add kubectl auto-completion
+  lineinfile:
+    dest: "{{ the_home }}/.bashrc"
+    line: "source <(kubectl completion bash)"
+  
+- name: Add kubectl auto-completion for k alias too
+  lineinfile:
+    dest: "{{ the_home }}/.bashrc"
+    line: "source <(kubectl completion bash | sed 's/kubectl/k/g')"
+
+- name: Add k alias to kubectl 
+  lineinfile:
+    dest: "{{ the_home }}/.bashrc"
+    line: "alias k=kubectl"

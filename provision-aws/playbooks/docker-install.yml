@@ -1,0 +1,12 @@
+---
+- hosts: k8s-boxes
+  become: yes
+  gather_facts: yes
+
+  vars_files:
+    - ../vars/docker.yml
+
+  roles:
+    - geerlingguy.ntp
+    - geerlingguy.git
+    - geerlingguy.docker
