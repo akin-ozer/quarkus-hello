@@ -15,7 +15,7 @@ You can then execute your binary: `./target/quarkus-hello-1.0.0-SNAPSHOT-runner`
 
 ## Cloud config
 
-- This project has terraform configuration under "src/main/terraform".
+- This project has terraform configuration under `src/main/terraform`.
 
 - Terraform configuration has s3 backend with DynomoDB lock.
 
@@ -49,3 +49,19 @@ You can then execute your binary: `./target/quarkus-hello-1.0.0-SNAPSHOT-runner`
 - Edit inventories/aws/inventory file to correctly show aws instance ips
 - `vagrant up ansible`
 - `vagrant provision ansible --provision-with aws`
+
+<b>To deploy app on Kubernetes:</b>
+
+Manifests are `src/main/manifests`
+
+Visit any ec2 instance with 32000 port. For example deployed app URL: 
+
+`http://34.243.89.194:32000`
+
+# Lambda Deployment
+
+İt is included in main terraform directory. All needed config files starts with "lambda-*".
+
+It deploys a serverless fuction that lists all VPCs and Subnets and writes them to DynomoDB. This function is integrated with API Gateway.
+
+Source code for application can be found in `src/main/lambda-project/main.py`.
