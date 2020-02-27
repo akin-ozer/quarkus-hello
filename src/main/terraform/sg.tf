@@ -69,6 +69,21 @@ resource "aws_security_group" "public" {
     cidr_blocks = [
       "0.0.0.0/0"]
   }
+  //quarkus-app port
+  ingress {
+    from_port = 32000
+    to_port = 32000
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+  egress {
+    from_port = 32000
+    to_port = 32000
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
   egress {
     from_port = 443
     to_port = 443
